@@ -74,5 +74,5 @@ def keq : knat → knat → bool
     | (succ x) (succ y) := keq x y -- lean guarantees that recursion will terminate
 
 #eval keq three three
-
+3
 end mynat
