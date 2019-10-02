@@ -62,3 +62,17 @@ def smart_unbox {T: Type} : (boxed T) → T
 -- Note on import statmeents:
 -- import .boxed -- imports local file boxed.lean
 -- we can now execute tests on our boxed datatypes
+
+-- How do we deal with partial functions?
+-- Define some "maybe" datatype that represents when we have a meaningful response
+
+inductive maybe (T : Type) : Type
+| some : T → maybe
+| none : maybe
+
+def double_if_positive : nat → (maybe nat) :=
+    λ (n: nat),
+        if n > 0 then (maybe.some (n * 2)) else (maybe.none nat)
+
+#reduce double_if_positive 2
+#reduce double_if_positive 0
